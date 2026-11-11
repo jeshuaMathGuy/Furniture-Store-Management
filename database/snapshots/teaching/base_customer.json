@@ -1,0 +1,23 @@
+[
+  {
+    "customer_id": 1,
+    "customer_name": "Asha Rao",
+    "email": "asha.rao@example.com",
+    "postal_code": "560001",
+    "is_active": 1
+  },
+  {
+    "customer_id": 2,
+    "customer_name": "Dev Shah",
+    "email": "dev.shah@example.com",
+    "postal_code": "400001",
+    "is_active": 1
+  },
+  {
+    "customer_id": 3,
+    "customer_name": "Mira Nair",
+    "email": "mira.nair@example.com",
+    "postal_code": "560001",
+    "is_active": 1
+  }
+]

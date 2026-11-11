@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/*
+ * FURNI / FORM design tokens. Architectural minimal: warm, muted, natural.
+ * Text colours are checked for WCAG AA (4.5:1) on porcelain. The decorative
+ * clay/sage swatches are used only for fills, large type, or alongside a text label.
+ */
+@theme {
+  --color-porcelain: #f5f1e9;
+  --color-limestone: #ebe4d8;
+  --color-oat: #d9c7b5;
+  --color-sage: #a8b09d;
+  --color-sage-deep: #56604c;   /* 5.9:1 on porcelain */
+  --color-clay: #b77d63;
+  --color-clay-deep: #8a5641;   /* 5.6:1 on porcelain */
+  --color-walnut: #6b4e3d;
+  --color-brass: #b08d57;
+  --color-charcoal: #373a34;    /* 10.6:1 on porcelain */
+  --color-ink-soft: #5c5e57;    /* 6.0:1 on porcelain */
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --shadow-soft: 0 1px 2px rgb(55 58 52 / 0.04), 0 8px 24px -12px rgb(55 58 52 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(55 58 52 / 0.05), 0 18px 40px -18px rgb(55 58 52 / 0.28);
+
+  --ease-arch: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html { background: var(--color-porcelain); color: var(--color-charcoal); }
+  body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  ::selection { background: var(--color-oat); color: var(--color-charcoal); }
+  :focus-visible { outline: 2px solid var(--color-brass); outline-offset: 3px; border-radius: 2px; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; text-wrap: balance; }
+}
+
+@layer components {
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .hairline { border-color: rgb(55 58 52 / 0.12); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    height: 2.75rem; padding: 0 1.25rem; border-radius: 999px; font-size: 0.9rem; font-weight: 500;
+    transition: background-color 220ms var(--ease-arch), color 220ms var(--ease-arch), transform 220ms var(--ease-arch);
+  }
+  .btn-primary { background: var(--color-charcoal); color: var(--color-porcelain); }
+  .btn-primary:hover { background: var(--color-walnut); }
+  .btn-ghost { border: 1px solid rgb(55 58 52 / 0.2); color: var(--color-charcoal); }
+  .btn-ghost:hover { background: var(--color-limestone); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .field {
+    height: 2.75rem; width: 100%; border-radius: 0.6rem; border: 1px solid rgb(55 58 52 / 0.18);
+    background: rgb(255 255 255 / 0.55); padding: 0 0.85rem; font-size: 0.9rem; color: var(--color-charcoal);
+  }
+  .field:focus { border-color: var(--color-brass); outline: none; box-shadow: 0 0 0 3px rgb(176 141 87 / 0.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+.rise { animation: rise 640ms var(--ease-arch) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }

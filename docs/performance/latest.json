@@ -1,0 +1,36 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "runs": 3,
+  "measuredAt": "2026-11-11T19:11:20.396Z",
+  "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pages": {
+    "/collection/102": {
+      "ttfb": 70.3,
+      "dcl": 283.7,
+      "load": 530.4,
+      "jsTransferredKB": 384.5,
+      "viewerReadyMs": 1659
+    },
+    "/ (cinematic scroll)": {
+      "ttfb": 41.5,
+      "dcl": 214.6,
+      "load": 336.9,
+      "jsTransferredKB": 422,
+      "frameP50": 16.7,
+      "frameP95": 16.9,
+      "frameMax": 50.1,
+      "over33ms": 1,
+      "frames": 345,
+      "heapMB": 13.2
+    },
+    "/showroom": {
+      "ttfb": 70.2,
+      "dcl": 141.5,
+      "load": 342.2,
+      "jsTransferredKB": 380,
+      "canvasMs": 1628,
+      "selectMs": 293,
+      "heapMB": 21.5
+    }
+  }
+}

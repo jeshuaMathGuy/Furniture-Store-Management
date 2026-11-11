@@ -1,0 +1,29 @@
+[
+  {
+    "offer_id": 1,
+    "product_id": 101,
+    "offer_name": "Executive Desk Launch",
+    "discount_pct": "10.00",
+    "start_date": "2026-11-01",
+    "end_date": "2026-11-30",
+    "is_active": 1
+  },
+  {
+    "offer_id": 2,
+    "product_id": 201,
+    "offer_name": "Living Room Refresh",
+    "discount_pct": "8.50",
+    "start_date": "2026-11-01",
+    "end_date": "2026-11-15",
+    "is_active": 1
+  },
+  {
+    "offer_id": 3,
+    "product_id": 202,
+    "offer_name": "Dining Collection",
+    "discount_pct": "12.00",
+    "start_date": "2026-11-03",
+    "end_date": "2026-11-20",
+    "is_active": 1
+  }
+]

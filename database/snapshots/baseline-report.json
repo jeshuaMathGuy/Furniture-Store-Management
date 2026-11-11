@@ -1,0 +1,1392 @@
+{
+  "source": "database/original/furniture_store_normalized.sql",
+  "statements": [
+    {
+      "index": 0,
+      "line": 1,
+      "preview": "DROP DATABASE IF EXISTS furni_form_app",
+      "kind": "other",
+      "affectedRows": 0,
+      "warnings": [
+        {
+          "level": "Note",
+          "code": 1008,
+          "message": "Can't drop database 'furni_form_app'; database doesn't exist"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "line": 2,
+      "preview": "CREATE DATABASE furni_form_app CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 2,
+      "line": 3,
+      "preview": "USE furni_form_app",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 3,
+      "line": 4,
+      "preview": "DROP TEMPORARY TABLE IF EXISTS unf_customer, unf_supplier, unf_product, unf_sales_order, nf1_order_l",
+      "kind": "other",
+      "affectedRows": 0,
+      "warnings": [
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.unf_customer'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.unf_supplier'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.unf_product'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.unf_sales_order'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf1_order_line'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf1_supplier_capability'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf2_order'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf2_product'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf2_order_line'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf2_supplier_capability'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf3_order_supplier_plan'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf3_supplier_capability'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf3_supplier_capability_check'"
+        },
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf3_order_supplier_plan_check'"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "line": 20,
+      "preview": "CREATE TABLE customer ( customer_id INT PRIMARY KEY, customer_name VARCHAR(120) NOT NULL, email VARC",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 5,
+      "line": 28,
+      "preview": "CREATE TABLE supplier ( supplier_id INT PRIMARY KEY, supplier_name VARCHAR(120) NOT NULL UNIQUE, pho",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 6,
+      "line": 35,
+      "preview": "CREATE TABLE product ( product_id INT PRIMARY KEY, product_name VARCHAR(140) NOT NULL, supplier_id I",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 7,
+      "line": 47,
+      "preview": "CREATE TABLE sales_order ( order_id INT PRIMARY KEY, customer_id INT NOT NULL, order_date DATETIME N",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 8,
+      "line": 58,
+      "preview": "CREATE TEMPORARY TABLE unf_customer ( customer_id INT PRIMARY KEY, customer_name VARCHAR(120) NOT NU",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 9,
+      "line": 68,
+      "preview": "CREATE TEMPORARY TABLE unf_supplier ( supplier_id INT PRIMARY KEY, supplier_name VARCHAR(120) NOT NU",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 10,
+      "line": 77,
+      "preview": "CREATE TEMPORARY TABLE unf_product ( product_id INT PRIMARY KEY, product_name VARCHAR(140) NOT NULL,",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 11,
+      "line": 87,
+      "preview": "CREATE TEMPORARY TABLE unf_sales_order ( order_id INT PRIMARY KEY, order_date DATETIME NOT NULL, cus",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 12,
+      "line": 100,
+      "preview": "INSERT INTO unf_customer VALUES (1,'Asha Rao','asha.rao@example.com','560001','Bengaluru','Karnataka",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 13,
+      "line": 105,
+      "preview": "INSERT INTO unf_supplier VALUES (10,'CedarWorks','0804000100',JSON_ARRAY('FSC','ISO9001'),JSON_ARRAY",
+      "kind": "other",
+      "affectedRows": 2
+    },
+    {
+      "index": 14,
+      "line": 109,
+      "preview": "INSERT INTO unf_product VALUES (101,'Oak Executive Desk',10,'CedarWorks','0804000100',45000,TRUE), (",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 15,
+      "line": 115,
+      "preview": "INSERT INTO unf_sales_order VALUES (5001,'2026-11-01 10:00:00',1,'Asha Rao','asha.rao@example.com','",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 16,
+      "line": 130,
+      "preview": "CREATE TEMPORARY TABLE nf1_order_line ( order_id INT NOT NULL, product_id INT NOT NULL, order_date D",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 17,
+      "line": 152,
+      "preview": "INSERT INTO nf1_order_line SELECT o.order_id,j.product_id,o.order_date,o.customer_id,o.customer_name",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 18,
+      "line": 166,
+      "preview": "CREATE TEMPORARY TABLE nf1_supplier_capability ( supplier_id INT NOT NULL, certification VARCHAR(50)",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 19,
+      "line": 173,
+      "preview": "INSERT INTO nf1_supplier_capability SELECT s.supplier_id,c.certification,r.service_region FROM unf_s",
+      "kind": "other",
+      "affectedRows": 8
+    },
+    {
+      "index": 20,
+      "line": 183,
+      "preview": "CREATE TEMPORARY TABLE nf2_order ( order_id INT PRIMARY KEY, order_date DATETIME NOT NULL, customer_",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 21,
+      "line": 195,
+      "preview": "INSERT INTO nf2_order SELECT DISTINCT order_id,order_date,customer_id,customer_name,customer_email, ",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 22,
+      "line": 200,
+      "preview": "CREATE TEMPORARY TABLE nf2_product ( product_id INT PRIMARY KEY, product_name VARCHAR(140) NOT NULL,",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 23,
+      "line": 210,
+      "preview": "INSERT INTO nf2_product SELECT product_id, product_name, supplier_id, supplier_name, supplier_phone,",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 24,
+      "line": 221,
+      "preview": "CREATE TEMPORARY TABLE nf2_order_line ( order_id INT NOT NULL, product_id INT NOT NULL, quantity INT",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 25,
+      "line": 231,
+      "preview": "INSERT INTO nf2_order_line SELECT order_id,product_id,quantity,unit_price,plan_code,warranty_months ",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 26,
+      "line": 235,
+      "preview": "CREATE TEMPORARY TABLE nf2_supplier_capability ( supplier_id INT NOT NULL, certification VARCHAR(50)",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 27,
+      "line": 242,
+      "preview": "INSERT INTO nf2_supplier_capability SELECT supplier_id,certification,service_region FROM nf1_supplie",
+      "kind": "other",
+      "affectedRows": 8
+    },
+    {
+      "index": 28,
+      "line": 246,
+      "preview": "CREATE TABLE postal_area ( postal_code VARCHAR(12) PRIMARY KEY, city VARCHAR(80) NOT NULL, region VA",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 29,
+      "line": 252,
+      "preview": "INSERT INTO postal_area SELECT DISTINCT postal_code,city,region FROM nf2_order",
+      "kind": "other",
+      "affectedRows": 2
+    },
+    {
+      "index": 30,
+      "line": 255,
+      "preview": "INSERT INTO customer (customer_id,customer_name,email,postal_code,is_active) SELECT customer_id,cust",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 31,
+      "line": 259,
+      "preview": "INSERT INTO supplier (supplier_id,supplier_name,phone,is_active) SELECT supplier_id,supplier_name,su",
+      "kind": "other",
+      "affectedRows": 2
+    },
+    {
+      "index": 32,
+      "line": 263,
+      "preview": "INSERT INTO product (product_id,product_name,supplier_id,list_price,is_active) SELECT product_id,pro",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 33,
+      "line": 267,
+      "preview": "INSERT INTO sales_order (order_id,customer_id,order_date,order_status) SELECT order_id,customer_id,o",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 34,
+      "line": 271,
+      "preview": "ALTER TABLE customer ADD CONSTRAINT fk_customer_postal FOREIGN KEY (postal_code) REFERENCES postal_a",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 35,
+      "line": 275,
+      "preview": "CREATE TABLE order_line ( order_id INT NOT NULL, product_id INT NOT NULL, quantity INT NOT NULL, uni",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 36,
+      "line": 294,
+      "preview": "INSERT INTO order_line (order_id,product_id,quantity,unit_price) SELECT order_id,product_id,quantity",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 37,
+      "line": 298,
+      "preview": "CREATE TABLE warranty_plan ( plan_code VARCHAR(24) PRIMARY KEY, supplier_id INT NOT NULL, warranty_m",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 38,
+      "line": 307,
+      "preview": "INSERT INTO warranty_plan (plan_code,supplier_id,warranty_months) SELECT DISTINCT plan_code,supplier",
+      "kind": "other",
+      "affectedRows": 2
+    },
+    {
+      "index": 39,
+      "line": 311,
+      "preview": "CREATE TEMPORARY TABLE nf3_order_supplier_plan ( order_id INT NOT NULL, supplier_id INT NOT NULL, pl",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 40,
+      "line": 319,
+      "preview": "INSERT INTO nf3_order_supplier_plan (order_id,supplier_id,plan_code) SELECT DISTINCT n.order_id,p.su",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 41,
+      "line": 324,
+      "preview": "CREATE TEMPORARY TABLE nf3_supplier_capability ( supplier_id INT NOT NULL, certification VARCHAR(50)",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 42,
+      "line": 331,
+      "preview": "INSERT INTO nf3_supplier_capability SELECT supplier_id,certification,service_region FROM nf2_supplie",
+      "kind": "other",
+      "affectedRows": 8
+    },
+    {
+      "index": 43,
+      "line": 335,
+      "preview": "CREATE TABLE order_plan ( order_id INT NOT NULL, plan_code VARCHAR(24) NOT NULL, PRIMARY KEY (order_",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 44,
+      "line": 345,
+      "preview": "INSERT INTO order_plan (order_id,plan_code) SELECT DISTINCT order_id,plan_code FROM nf3_order_suppli",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 45,
+      "line": 349,
+      "preview": "CREATE TABLE supplier_certification ( supplier_id INT NOT NULL, certification VARCHAR(50) NOT NULL, ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 46,
+      "line": 357,
+      "preview": "CREATE TABLE supplier_service_region ( supplier_id INT NOT NULL, service_region VARCHAR(80) NOT NULL",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 47,
+      "line": 365,
+      "preview": "INSERT INTO supplier_certification SELECT DISTINCT supplier_id,certification FROM nf3_supplier_capab",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 48,
+      "line": 369,
+      "preview": "INSERT INTO supplier_service_region SELECT DISTINCT supplier_id,service_region FROM nf3_supplier_cap",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 49,
+      "line": 373,
+      "preview": "CREATE TABLE offer ( offer_id INT PRIMARY KEY, product_id INT NOT NULL, offer_name VARCHAR(120) NOT ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 50,
+      "line": 388,
+      "preview": "CREATE TABLE feedback ( feedback_id INT PRIMARY KEY, customer_id INT NOT NULL, product_id INT NOT NU",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 51,
+      "line": 403,
+      "preview": "INSERT INTO offer VALUES (1,101,'Executive Desk Launch',10,'2026-11-01','2026-11-30',TRUE), (2,201,'",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 52,
+      "line": 408,
+      "preview": "INSERT INTO feedback (feedback_id,customer_id,product_id,rating,comment,feedback_date) VALUES (1,1,1",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 53,
+      "line": 413,
+      "preview": "CREATE TABLE order_status_history ( history_id BIGINT AUTO_INCREMENT PRIMARY KEY, order_id INT NOT N",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 54,
+      "line": 424,
+      "preview": "INSERT INTO order_status_history (order_id,order_status,changed_at,remarks) SELECT order_id,order_st",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 55,
+      "line": 428,
+      "preview": "CREATE TABLE product_inventory ( product_id INT PRIMARY KEY, qty_on_hand INT NOT NULL, reorder_point",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 56,
+      "line": 439,
+      "preview": "INSERT INTO product_inventory VALUES (101,8,3,10),(102,3,4,12),(201,2,3,5),(202,10,2,6)",
+      "kind": "other",
+      "affectedRows": 4
+    },
+    {
+      "index": 57,
+      "line": 442,
+      "preview": "CREATE TABLE goods_receipt ( receipt_id INT PRIMARY KEY, receipt_date DATE NOT NULL, receipt_status ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 58,
+      "line": 448,
+      "preview": "CREATE TABLE goods_receipt_line ( receipt_id INT NOT NULL, product_id INT NOT NULL, quantity_receive",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 59,
+      "line": 460,
+      "preview": "INSERT INTO goods_receipt VALUES (7001,'2026-11-04','pending')",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 60,
+      "line": 461,
+      "preview": "INSERT INTO goods_receipt_line VALUES (7001,101,5),(7001,201,4)",
+      "kind": "other",
+      "affectedRows": 2
+    },
+    {
+      "index": 61,
+      "line": 463,
+      "preview": "CREATE TABLE loyalty_award ( order_id INT PRIMARY KEY, customer_id INT NOT NULL, points_awarded INT ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 62,
+      "line": 475,
+      "preview": "CREATE TABLE supplier_settlement ( settlement_id BIGINT AUTO_INCREMENT PRIMARY KEY, supplier_id INT ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 63,
+      "line": 489,
+      "preview": "CREATE TABLE reorder_request ( request_id BIGINT AUTO_INCREMENT PRIMARY KEY, product_id INT NOT NULL",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 64,
+      "line": 501,
+      "preview": "CREATE TABLE audit_log ( audit_id BIGINT AUTO_INCREMENT PRIMARY KEY, entity_name VARCHAR(40) NOT NUL",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 65,
+      "line": 513,
+      "preview": "CREATE PROCEDURE sp_confirm_order(IN p_order_id INT) BEGIN DECLARE v_done BOOLEAN DEFAULT FALSE; DEC",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 66,
+      "line": 566,
+      "preview": "CREATE PROCEDURE sp_receive_goods(IN p_receipt_id INT) BEGIN DECLARE v_done BOOLEAN DEFAULT FALSE; D",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 67,
+      "line": 615,
+      "preview": "CREATE PROCEDURE sp_award_loyalty(IN p_cutoff DATE, OUT p_awarded_points BIGINT) BEGIN DECLARE v_don",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 68,
+      "line": 657,
+      "preview": "CREATE PROCEDURE sp_build_supplier_settlements( IN p_period_start DATE, IN p_period_end DATE, OUT p_",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 69,
+      "line": 704,
+      "preview": "CREATE PROCEDURE sp_queue_reorders(IN p_request_date DATE, OUT p_queued INT) BEGIN DECLARE v_done BO",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 70,
+      "line": 742,
+      "preview": "CREATE TRIGGER bi_sales_order BEFORE INSERT ON sales_order FOR EACH ROW BEGIN DECLARE v_active INT D",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 71,
+      "line": 755,
+      "preview": "CREATE TRIGGER bi_order_line BEFORE INSERT ON order_line FOR EACH ROW BEGIN DECLARE v_valid_order IN",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 72,
+      "line": 775,
+      "preview": "CREATE TRIGGER bu_sales_order BEFORE UPDATE ON sales_order FOR EACH ROW BEGIN IF NEW.order_status<>O",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 73,
+      "line": 789,
+      "preview": "CREATE TRIGGER au_sales_order AFTER UPDATE ON sales_order FOR EACH ROW BEGIN IF NEW.order_status<>OL",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 74,
+      "line": 801,
+      "preview": "CREATE TRIGGER au_product AFTER UPDATE ON product FOR EACH ROW BEGIN IF NEW.list_price<>OLD.list_pri",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 75,
+      "line": 811,
+      "preview": "CREATE FUNCTION fn_discounted_price( p_price DECIMAL(12,2), p_discount_pct DECIMAL(5,2) ) RETURNS DE",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 76,
+      "line": 825,
+      "preview": "CREATE FUNCTION fn_warranty_expiry( p_purchase_date DATE, p_months INT ) RETURNS DATE DETERMINISTIC ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 77,
+      "line": 841,
+      "preview": "INSERT INTO sales_order (order_id,customer_id,order_date,order_status) VALUES (5004,1,'2026-11-04 17",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 78,
+      "line": 843,
+      "preview": "INSERT INTO order_line (order_id,product_id,quantity,unit_price) VALUES (5004,101,1,45000)",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 79,
+      "line": 845,
+      "preview": "UPDATE sales_order SET order_status='placed' WHERE order_id=5004",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 80,
+      "line": 846,
+      "preview": "UPDATE product SET list_price=list_price+1 WHERE product_id=101",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 81,
+      "line": 847,
+      "preview": "UPDATE product SET list_price=list_price-1 WHERE product_id=101",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 82,
+      "line": 849,
+      "preview": "CALL sp_confirm_order(5001)",
+      "kind": "call",
+      "affectedRows": 0
+    },
+    {
+      "index": 83,
+      "line": 850,
+      "preview": "CALL sp_receive_goods(7001)",
+      "kind": "call",
+      "affectedRows": 0
+    },
+    {
+      "index": 84,
+      "line": 851,
+      "preview": "CALL sp_award_loyalty('2026-11-04',@awarded_points)",
+      "kind": "call",
+      "affectedRows": 0
+    },
+    {
+      "index": 85,
+      "line": 852,
+      "preview": "CALL sp_build_supplier_settlements('2026-11-01','2026-11-04',@total_settled)",
+      "kind": "call",
+      "affectedRows": 0
+    },
+    {
+      "index": 86,
+      "line": 853,
+      "preview": "CALL sp_queue_reorders('2026-11-04',@queued_reorders)",
+      "kind": "call",
+      "affectedRows": 0
+    },
+    {
+      "index": 87,
+      "line": 855,
+      "preview": "SELECT @awarded_points AS awarded_points, @total_settled AS total_supplier_settlements, @queued_reor",
+      "kind": "select",
+      "rows": [
+        {
+          "awarded_points": 1020,
+          "total_supplier_settlements": "102000.00",
+          "reorder_requests_processed": 1
+        }
+      ]
+    },
+    {
+      "index": 88,
+      "line": 859,
+      "preview": "SELECT fn_discounted_price(45000,10) AS discounted_price, fn_warranty_expiry('2026-11-04',36) AS war",
+      "kind": "select",
+      "rows": [
+        {
+          "discounted_price": "40500.00",
+          "warranty_expiry": "2029-11-04"
+        }
+      ]
+    },
+    {
+      "index": 89,
+      "line": 862,
+      "preview": "SELECT s.order_id,ROUND(SUM(l.line_total),2) AS calculated_order_total FROM sales_order s JOIN order",
+      "kind": "select",
+      "rows": [
+        {
+          "order_id": 5001,
+          "calculated_order_total": "67000.00"
+        },
+        {
+          "order_id": 5002,
+          "calculated_order_total": "65000.00"
+        },
+        {
+          "order_id": 5003,
+          "calculated_order_total": "37000.00"
+        },
+        {
+          "order_id": 5004,
+          "calculated_order_total": "45000.00"
+        }
+      ]
+    },
+    {
+      "index": 90,
+      "line": 868,
+      "preview": "SELECT c.customer_id,c.customer_name,COALESCE(SUM(a.points_awarded),0) AS loyalty_points FROM custom",
+      "kind": "select",
+      "rows": [
+        {
+          "customer_id": 1,
+          "customer_name": "Asha Rao",
+          "loyalty_points": "0"
+        },
+        {
+          "customer_id": 2,
+          "customer_name": "Dev Shah",
+          "loyalty_points": "650"
+        },
+        {
+          "customer_id": 3,
+          "customer_name": "Mira Nair",
+          "loyalty_points": "370"
+        }
+      ]
+    },
+    {
+      "index": 91,
+      "line": 874,
+      "preview": "SELECT 'unf_to_nf1_expansion' AS verification, COUNT(*) AS violations FROM unf_sales_order o CROSS J",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "unf_to_nf1_expansion",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "line": 888,
+      "preview": "SELECT 'nf1_to_nf2_lossless' AS verification, COUNT(*) AS violations FROM nf1_order_line n LEFT JOIN",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "nf1_to_nf2_lossless",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 93,
+      "line": 901,
+      "preview": "SELECT 'nf2_to_3nf_order_lossless' AS verification, COUNT(*) AS violations FROM nf2_order n LEFT JOI",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "nf2_to_3nf_order_lossless",
+          "violations": 1
+        }
+      ]
+    },
+    {
+      "index": 94,
+      "line": 912,
+      "preview": "SELECT 'nf2_to_3nf_product_lossless' AS verification, COUNT(*) AS violations FROM nf2_product n LEFT",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "nf2_to_3nf_product_lossless",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 95,
+      "line": 921,
+      "preview": "SELECT 'nf2_order_line_reconstruction' AS verification, COUNT(*) AS violations FROM nf2_order_line n",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "nf2_order_line_reconstruction",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "line": 944,
+      "preview": "CREATE TEMPORARY TABLE nf3_order_supplier_plan_check AS SELECT order_id, supplier_id, plan_code FROM",
+      "kind": "other",
+      "affectedRows": 3
+    },
+    {
+      "index": 97,
+      "line": 951,
+      "preview": "SELECT '3nf_to_bcnf_lossless' AS verification, COUNT(*) AS violations FROM nf3_order_supplier_plan n",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "3nf_to_bcnf_lossless",
+          "violations": 0
+        },
+        {
+          "verification": "3nf_to_bcnf_extra_rows",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 98,
+      "line": 979,
+      "preview": "DROP TEMPORARY TABLE IF EXISTS nf3_supplier_capability",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 99,
+      "line": 980,
+      "preview": "DROP TEMPORARY TABLE IF EXISTS nf3_supplier_capability_check",
+      "kind": "other",
+      "affectedRows": 0,
+      "warnings": [
+        {
+          "level": "Note",
+          "code": 1051,
+          "message": "Unknown table 'furni_form_app.nf3_supplier_capability_check'"
+        }
+      ]
+    },
+    {
+      "index": 100,
+      "line": 982,
+      "preview": "CREATE TEMPORARY TABLE nf3_supplier_capability ( supplier_id INT NOT NULL, certification VARCHAR(50)",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 101,
+      "line": 993,
+      "preview": "INSERT INTO nf3_supplier_capability SELECT supplier_id, certification, service_region FROM nf2_suppl",
+      "kind": "other",
+      "affectedRows": 8
+    },
+    {
+      "index": 102,
+      "line": 1000,
+      "preview": "CREATE TEMPORARY TABLE nf3_supplier_capability_check ( supplier_id INT NOT NULL, certification VARCH",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 103,
+      "line": 1011,
+      "preview": "INSERT INTO nf3_supplier_capability_check SELECT supplier_id, certification, service_region FROM nf3",
+      "kind": "other",
+      "affectedRows": 8
+    },
+    {
+      "index": 104,
+      "line": 1017,
+      "preview": "SELECT '4nf_lossless_reconstruction' AS verification, ( SELECT COUNT(*) FROM nf3_supplier_capability",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "4nf_lossless_reconstruction",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 105,
+      "line": 1046,
+      "preview": "SELECT s.supplier_id, (SELECT COUNT(*) FROM supplier_certification c WHERE c.supplier_id=s.supplier_",
+      "kind": "select",
+      "rows": [
+        {
+          "supplier_id": 10,
+          "certification_count": 2,
+          "region_count": 2,
+          "combined_rows": 4,
+          "expected_rows": 4
+        },
+        {
+          "supplier_id": 20,
+          "certification_count": 2,
+          "region_count": 2,
+          "combined_rows": 4,
+          "expected_rows": 4
+        }
+      ]
+    },
+    {
+      "index": 106,
+      "line": 1055,
+      "preview": "SELECT p.product_name,o.offer_name,o.discount_pct, fn_discounted_price(p.list_price,o.discount_pct) ",
+      "kind": "select",
+      "rows": [
+        {
+          "product_name": "Modular Fabric Sofa",
+          "offer_name": "Living Room Refresh",
+          "discount_pct": "8.50",
+          "offer_price": "62220.00"
+        },
+        {
+          "product_name": "Oak Executive Desk",
+          "offer_name": "Executive Desk Launch",
+          "discount_pct": "10.00",
+          "offer_price": "40500.00"
+        },
+        {
+          "product_name": "Solid Wood Dining Table",
+          "offer_name": "Dining Collection",
+          "discount_pct": "12.00",
+          "offer_price": "33440.00"
+        }
+      ]
+    },
+    {
+      "index": 107,
+      "line": 1061,
+      "preview": "SELECT p.product_name,ROUND(AVG(f.rating),2) AS average_rating,COUNT(*) AS review_count FROM feedbac",
+      "kind": "select",
+      "rows": [
+        {
+          "product_name": "Oak Executive Desk",
+          "average_rating": "5.00",
+          "review_count": 1
+        },
+        {
+          "product_name": "Modular Fabric Sofa",
+          "average_rating": "4.00",
+          "review_count": 1
+        },
+        {
+          "product_name": "Solid Wood Dining Table",
+          "average_rating": "4.00",
+          "review_count": 1
+        }
+      ]
+    },
+    {
+      "index": 108,
+      "line": 1066,
+      "preview": "SELECT 'functional_dependency_consistency' AS verification, (SELECT COUNT(*) FROM ( SELECT postal_co",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "functional_dependency_consistency",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 109,
+      "line": 1081,
+      "preview": "SELECT 'foreign_key_integrity' AS verification, (SELECT COUNT(*) FROM customer c LEFT JOIN postal_ar",
+      "kind": "select",
+      "rows": [
+        {
+          "verification": "foreign_key_integrity",
+          "violations": 0
+        }
+      ]
+    },
+    {
+      "index": 110,
+      "line": 1090,
+      "preview": "SELECT routine_type,COUNT(*) AS object_count FROM information_schema.routines WHERE routine_schema=D",
+      "kind": "select",
+      "rows": [
+        {
+          "ROUTINE_TYPE": "FUNCTION",
+          "object_count": 2
+        },
+        {
+          "ROUTINE_TYPE": "PROCEDURE",
+          "object_count": 5
+        }
+      ]
+    },
+    {
+      "index": 111,
+      "line": 1100,
+      "preview": "SELECT COUNT(*) AS trigger_count FROM information_schema.triggers WHERE trigger_schema=DATABASE() AN",
+      "kind": "select",
+      "rows": [
+        {
+          "trigger_count": 5
+        }
+      ]
+    },
+    {
+      "index": 112,
+      "line": 1105,
+      "preview": "SELECT COUNT(*) AS normalized_customers FROM customer",
+      "kind": "select",
+      "rows": [
+        {
+          "normalized_customers": 3
+        }
+      ]
+    },
+    {
+      "index": 113,
+      "line": 1106,
+      "preview": "SELECT COUNT(*) AS normalized_suppliers FROM supplier",
+      "kind": "select",
+      "rows": [
+        {
+          "normalized_suppliers": 2
+        }
+      ]
+    },
+    {
+      "index": 114,
+      "line": 1107,
+      "preview": "SELECT COUNT(*) AS normalized_products FROM product",
+      "kind": "select",
+      "rows": [
+        {
+          "normalized_products": 4
+        }
+      ]
+    },
+    {
+      "index": 115,
+      "line": 1108,
+      "preview": "SELECT COUNT(*) AS normalized_orders FROM sales_order",
+      "kind": "select",
+      "rows": [
+        {
+          "normalized_orders": 4
+        }
+      ]
+    },
+    {
+      "index": 116,
+      "line": 1110,
+      "preview": "START TRANSACTION",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 117,
+      "line": 1111,
+      "preview": "SAVEPOINT before_price_change",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 118,
+      "line": 1112,
+      "preview": "UPDATE product SET list_price=list_price+100 WHERE product_id=102",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 119,
+      "line": 1113,
+      "preview": "ROLLBACK TO SAVEPOINT before_price_change",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 120,
+      "line": 1114,
+      "preview": "RELEASE SAVEPOINT before_price_change",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 121,
+      "line": 1115,
+      "preview": "COMMIT",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 122,
+      "line": 1117,
+      "preview": "BEGIN",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 123,
+      "line": 1118,
+      "preview": "UPDATE product SET list_price=list_price+50 WHERE product_id=102",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 124,
+      "line": 1119,
+      "preview": "ROLLBACK",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 125,
+      "line": 1121,
+      "preview": "START TRANSACTION",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 126,
+      "line": 1122,
+      "preview": "SELECT product_id,qty_on_hand FROM product_inventory WHERE product_id=101 FOR SHARE",
+      "kind": "select",
+      "rows": [
+        {
+          "product_id": 101,
+          "qty_on_hand": 12
+        }
+      ]
+    },
+    {
+      "index": 127,
+      "line": 1124,
+      "preview": "COMMIT",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 128,
+      "line": 1126,
+      "preview": "START TRANSACTION",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 129,
+      "line": 1127,
+      "preview": "SELECT product_id,qty_on_hand FROM product_inventory WHERE product_id=101 FOR UPDATE",
+      "kind": "select",
+      "rows": [
+        {
+          "product_id": 101,
+          "qty_on_hand": 12
+        }
+      ]
+    },
+    {
+      "index": 130,
+      "line": 1129,
+      "preview": "SAVEPOINT before_inventory_edit",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 131,
+      "line": 1130,
+      "preview": "UPDATE product_inventory SET qty_on_hand=qty_on_hand-1 WHERE product_id=101 AND qty_on_hand>=1",
+      "kind": "other",
+      "affectedRows": 1
+    },
+    {
+      "index": 132,
+      "line": 1132,
+      "preview": "ROLLBACK TO SAVEPOINT before_inventory_edit",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 133,
+      "line": 1133,
+      "preview": "RELEASE SAVEPOINT before_inventory_edit",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 134,
+      "line": 1134,
+      "preview": "COMMIT",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 135,
+      "line": 1136,
+      "preview": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 136,
+      "line": 1137,
+      "preview": "START TRANSACTION",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 137,
+      "line": 1138,
+      "preview": "SELECT product_id,qty_on_hand FROM product_inventory WHERE product_id BETWEEN 101 AND 201 FOR UPDATE",
+      "kind": "select",
+      "rows": [
+        {
+          "product_id": 101,
+          "qty_on_hand": 12
+        },
+        {
+          "product_id": 102,
+          "qty_on_hand": 1
+        },
+        {
+          "product_id": 201,
+          "qty_on_hand": 6
+        }
+      ]
+    },
+    {
+      "index": 138,
+      "line": 1140,
+      "preview": "COMMIT",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 139,
+      "line": 1142,
+      "preview": "LOCK TABLES product_inventory READ",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 140,
+      "line": 1143,
+      "preview": "SELECT * FROM product_inventory ORDER BY product_id",
+      "kind": "select",
+      "rows": [
+        {
+          "product_id": 101,
+          "qty_on_hand": 12,
+          "reorder_point": 3,
+          "reorder_qty": 10
+        },
+        {
+          "product_id": 102,
+          "qty_on_hand": 1,
+          "reorder_point": 4,
+          "reorder_qty": 12
+        },
+        {
+          "product_id": 201,
+          "qty_on_hand": 6,
+          "reorder_point": 3,
+          "reorder_qty": 5
+        },
+        {
+          "product_id": 202,
+          "qty_on_hand": 10,
+          "reorder_point": 2,
+          "reorder_qty": 6
+        }
+      ]
+    },
+    {
+      "index": 141,
+      "line": 1144,
+      "preview": "UNLOCK TABLES",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 142,
+      "line": 1146,
+      "preview": "LOCK TABLES product_inventory WRITE",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 143,
+      "line": 1147,
+      "preview": "SELECT COUNT(*) AS inventory_rows FROM product_inventory",
+      "kind": "select",
+      "rows": [
+        {
+          "inventory_rows": 4
+        }
+      ]
+    },
+    {
+      "index": 144,
+      "line": 1148,
+      "preview": "UNLOCK TABLES",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 145,
+      "line": 1150,
+      "preview": "START TRANSACTION READ ONLY",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 146,
+      "line": 1151,
+      "preview": "SELECT product_id,qty_on_hand FROM product_inventory ORDER BY product_id",
+      "kind": "select",
+      "rows": [
+        {
+          "product_id": 101,
+          "qty_on_hand": 12
+        },
+        {
+          "product_id": 102,
+          "qty_on_hand": 1
+        },
+        {
+          "product_id": 201,
+          "qty_on_hand": 6
+        },
+        {
+          "product_id": 202,
+          "qty_on_hand": 10
+        }
+      ]
+    },
+    {
+      "index": 147,
+      "line": 1152,
+      "preview": "COMMIT",
+      "kind": "other",
+      "affectedRows": 0
+    },
+    {
+      "index": 148,
+      "line": 1154,
+      "preview": "SELECT product_id,qty_on_hand FROM product_inventory ORDER BY product_id",
+      "kind": "select",
+      "rows": [
+        {
+          "product_id": 101,
+          "qty_on_hand": 12
+        },
+        {
+          "product_id": 102,
+          "qty_on_hand": 1
+        },
+        {
+          "product_id": 201,
+          "qty_on_hand": 6
+        },
+        {
+          "product_id": 202,
+          "qty_on_hand": 10
+        }
+      ]
+    }
+  ]
+}

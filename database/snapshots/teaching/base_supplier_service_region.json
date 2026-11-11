@@ -1,0 +1,18 @@
+[
+  {
+    "supplier_id": 10,
+    "service_region": "Goa"
+  },
+  {
+    "supplier_id": 10,
+    "service_region": "Karnataka"
+  },
+  {
+    "supplier_id": 20,
+    "service_region": "Gujarat"
+  },
+  {
+    "supplier_id": 20,
+    "service_region": "Maharashtra"
+  }
+]

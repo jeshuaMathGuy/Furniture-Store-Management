@@ -1,0 +1,26 @@
+[
+  {
+    "feedback_id": 1,
+    "customer_id": 1,
+    "product_id": 101,
+    "rating": 5,
+    "comment": "Excellent finish and sturdy construction",
+    "feedback_date": "2026-11-02 14:00:00"
+  },
+  {
+    "feedback_id": 2,
+    "customer_id": 2,
+    "product_id": 201,
+    "rating": 4,
+    "comment": "Comfortable sofa with good fabric quality",
+    "feedback_date": "2026-11-03 16:30:00"
+  },
+  {
+    "feedback_id": 3,
+    "customer_id": 3,
+    "product_id": 202,
+    "rating": 4,
+    "comment": "Solid dining table and clean finish",
+    "feedback_date": "2026-11-04 11:15:00"
+  }
+]

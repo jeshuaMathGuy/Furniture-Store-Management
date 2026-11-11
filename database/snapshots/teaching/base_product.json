@@ -1,0 +1,30 @@
+[
+  {
+    "product_id": 101,
+    "product_name": "Oak Executive Desk",
+    "supplier_id": 10,
+    "list_price": "45000.00",
+    "is_active": 1
+  },
+  {
+    "product_id": 102,
+    "product_name": "Ergonomic Oak Chair",
+    "supplier_id": 10,
+    "list_price": "12000.00",
+    "is_active": 1
+  },
+  {
+    "product_id": 201,
+    "product_name": "Modular Fabric Sofa",
+    "supplier_id": 20,
+    "list_price": "68000.00",
+    "is_active": 1
+  },
+  {
+    "product_id": 202,
+    "product_name": "Solid Wood Dining Table",
+    "supplier_id": 20,
+    "list_price": "38000.00",
+    "is_active": 1
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "supplier_id": 10,
+    "certification": "FSC",
+    "service_region": "Goa"
+  },
+  {
+    "supplier_id": 10,
+    "certification": "FSC",
+    "service_region": "Karnataka"
+  },
+  {
+    "supplier_id": 10,
+    "certification": "ISO9001",
+    "service_region": "Goa"
+  },
+  {
+    "supplier_id": 10,
+    "certification": "ISO9001",
+    "service_region": "Karnataka"
+  },
+  {
+    "supplier_id": 20,
+    "certification": "BIFMA",
+    "service_region": "Gujarat"
+  },
+  {
+    "supplier_id": 20,
+    "certification": "BIFMA",
+    "service_region": "Maharashtra"
+  },
+  {
+    "supplier_id": 20,
+    "certification": "FSC",
+    "service_region": "Gujarat"
+  },
+  {
+    "supplier_id": 20,
+    "certification": "FSC",
+    "service_region": "Maharashtra"
+  }
+]

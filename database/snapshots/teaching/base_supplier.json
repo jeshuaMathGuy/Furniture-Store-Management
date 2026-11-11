@@ -1,0 +1,14 @@
+[
+  {
+    "supplier_id": 10,
+    "supplier_name": "CedarWorks",
+    "phone": "0804000100",
+    "is_active": 1
+  },
+  {
+    "supplier_id": 20,
+    "supplier_name": "UrbanNest",
+    "phone": "0224000200",
+    "is_active": 1
+  }
+]

@@ -1,0 +1,136 @@
+name: furni-form
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: UTC
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      - --default-time-zone=+00:00
+      - --innodb-lock-wait-timeout=10
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 3s
+      timeout: 5s
+      retries: 40
+      start_period: 20s
+
+  # Toolchain container: Node 22 + pnpm. Runs migrations, seeds and tests.
+  tools:
+    image: node:22-bookworm-slim
+    working_dir: /workspace
+    env_file: .env
+    environment:
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+      PNPM_HOME: /pnpm
+    volumes:
+      - .:/workspace
+      - node-modules:/workspace/node_modules
+      - pkg-db-modules:/workspace/packages/database/node_modules
+      - pkg-shared-modules:/workspace/packages/shared/node_modules
+      - web-modules:/workspace/apps/web/node_modules
+      - web-next:/workspace/apps/web/.next
+      - pnpm-store:/pnpm/store
+    entrypoint: ["sh", "-c", "corepack enable >/dev/null 2>&1 && pnpm config set store-dir /pnpm/store >/dev/null && exec \"$$@\"", "--"]
+    command: ["pnpm", "db:setup"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # Next.js app (dev server). Connects to MySQL as the least-privilege furni_app user.
+  web:
+    image: node:22-bookworm-slim
+    working_dir: /workspace
+    # Explicit allow-list: the web server never sees root or lab credentials.
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      APP_DB_NAME: ${APP_DB_NAME}
+      APP_DB_USER: ${APP_DB_USER}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+      NEXT_TELEMETRY_DISABLED: "1"
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - .:/workspace
+      - node-modules:/workspace/node_modules
+      - pkg-db-modules:/workspace/packages/database/node_modules
+      - pkg-shared-modules:/workspace/packages/shared/node_modules
+      - web-modules:/workspace/apps/web/node_modules
+      - web-next:/workspace/apps/web/.next
+    command: ["sh", "-c", "corepack enable >/dev/null 2>&1 && pnpm --filter @furni/web dev"]
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # Production build of the web app for end-to-end tests (separate dist dir from the dev server).
+  web-test:
+    image: node:22-bookworm-slim
+    profiles: ["test"]
+    working_dir: /workspace
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      APP_DB_NAME: ${APP_DB_NAME}
+      APP_DB_USER: ${APP_DB_USER}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+      NEXT_DIST_DIR: .next-test
+      NEXT_TELEMETRY_DISABLED: "1"
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+    volumes:
+      - .:/workspace
+      - node-modules:/workspace/node_modules
+      - pkg-db-modules:/workspace/packages/database/node_modules
+      - pkg-shared-modules:/workspace/packages/shared/node_modules
+      - web-modules:/workspace/apps/web/node_modules
+    command: ["sh", "-c", "corepack enable >/dev/null 2>&1 && pnpm --filter @furni/web build && pnpm --filter @furni/web start"]
+    ports:
+      - "127.0.0.1:3001:3000"
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/collection').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      interval: 5s
+      timeout: 10s
+      retries: 60
+      start_period: 60s
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # Playwright end-to-end tests against the running web service: docker compose --profile test run --rm e2e
+  e2e:
+    image: mcr.microsoft.com/playwright:v1.51.1-noble
+    profiles: ["test"]
+    shm_size: "512mb"
+    working_dir: /workspace/apps/web
+    environment:
+      E2E_BASE_URL: http://web-test:3000
+      DEMO_ACCOUNT_PASSWORD: ${DEMO_ACCOUNT_PASSWORD}
+      CI: "1"
+    volumes:
+      - .:/workspace
+      - node-modules:/workspace/node_modules
+      - pkg-db-modules:/workspace/packages/database/node_modules
+      - pkg-shared-modules:/workspace/packages/shared/node_modules
+      - web-modules:/workspace/apps/web/node_modules
+    command: ["node", "node_modules/@playwright/test/cli.js", "test"]
+    depends_on:
+      web-test:
+        condition: service_healthy
+
+volumes:
+  mysql-data:
+  node-modules:
+  pkg-db-modules:
+  pkg-shared-modules:
+  pnpm-store:
+  web-modules:
+  web-next:

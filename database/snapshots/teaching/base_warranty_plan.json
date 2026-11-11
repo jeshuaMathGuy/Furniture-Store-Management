@@ -1,0 +1,12 @@
+[
+  {
+    "plan_code": "CEDAR36",
+    "supplier_id": 10,
+    "warranty_months": 36
+  },
+  {
+    "plan_code": "URBAN24",
+    "supplier_id": 20,
+    "warranty_months": 24
+  }
+]

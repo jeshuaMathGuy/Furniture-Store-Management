@@ -1,0 +1,24 @@
+{
+  "name": "furni-form",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "type": "module",
+  "scripts": {
+    "db:check": "pnpm --filter @furni/database run check",
+    "db:setup": "pnpm --filter @furni/database run setup",
+    "db:reset": "pnpm --filter @furni/database run setup -- --reset",
+    "db:reset-lab": "pnpm --filter @furni/database run reset-lab",
+    "test:db": "vitest run --config database/tests/vitest.config.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:web": "pnpm --filter @furni/web test",
+    "e2e": "pnpm --filter @furni/web e2e",
+    "dev": "pnpm --filter @furni/web dev"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "mysql2": "3.11.5",
+    "tsx": "4.19.2",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
+  }
+}

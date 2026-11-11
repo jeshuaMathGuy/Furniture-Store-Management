@@ -1,0 +1,30 @@
+[
+  {
+    "supplier_id": 10,
+    "supplier_name": "CedarWorks",
+    "supplier_phone": "0804000100",
+    "certifications": [
+      "FSC",
+      "ISO9001"
+    ],
+    "service_regions": [
+      "Karnataka",
+      "Goa"
+    ],
+    "is_active": 1
+  },
+  {
+    "supplier_id": 20,
+    "supplier_name": "UrbanNest",
+    "supplier_phone": "0224000200",
+    "certifications": [
+      "BIFMA",
+      "FSC"
+    ],
+    "service_regions": [
+      "Maharashtra",
+      "Gujarat"
+    ],
+    "is_active": 1
+  }
+]

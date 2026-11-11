@@ -1,0 +1,18 @@
+[
+  {
+    "supplier_id": 10,
+    "certification": "FSC"
+  },
+  {
+    "supplier_id": 10,
+    "certification": "ISO9001"
+  },
+  {
+    "supplier_id": 20,
+    "certification": "BIFMA"
+  },
+  {
+    "supplier_id": 20,
+    "certification": "FSC"
+  }
+]

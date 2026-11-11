@@ -1,0 +1,34 @@
+[
+  {
+    "order_id": 5001,
+    "product_id": 101,
+    "quantity": 1,
+    "unit_price": "44000.00",
+    "plan_code": "CEDAR36",
+    "warranty_months": 36
+  },
+  {
+    "order_id": 5001,
+    "product_id": 102,
+    "quantity": 2,
+    "unit_price": "11500.00",
+    "plan_code": "CEDAR36",
+    "warranty_months": 36
+  },
+  {
+    "order_id": 5002,
+    "product_id": 201,
+    "quantity": 1,
+    "unit_price": "65000.00",
+    "plan_code": "URBAN24",
+    "warranty_months": 24
+  },
+  {
+    "order_id": 5003,
+    "product_id": 202,
+    "quantity": 1,
+    "unit_price": "37000.00",
+    "plan_code": "URBAN24",
+    "warranty_months": 24
+  }
+]

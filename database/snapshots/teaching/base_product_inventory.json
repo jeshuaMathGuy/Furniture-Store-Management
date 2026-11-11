@@ -1,0 +1,26 @@
+[
+  {
+    "product_id": 101,
+    "qty_on_hand": 8,
+    "reorder_point": 3,
+    "reorder_qty": 10
+  },
+  {
+    "product_id": 102,
+    "qty_on_hand": 3,
+    "reorder_point": 4,
+    "reorder_qty": 12
+  },
+  {
+    "product_id": 201,
+    "qty_on_hand": 2,
+    "reorder_point": 3,
+    "reorder_qty": 5
+  },
+  {
+    "product_id": 202,
+    "qty_on_hand": 10,
+    "reorder_point": 2,
+    "reorder_qty": 6
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "order_id": 5001,
+    "order_date": "2026-11-01 10:00:00",
+    "customer_id": 1,
+    "customer_name": "Asha Rao",
+    "customer_email": "asha.rao@example.com",
+    "postal_code": "560001",
+    "city": "Bengaluru",
+    "region": "Karnataka",
+    "order_status": "placed"
+  },
+  {
+    "order_id": 5002,
+    "order_date": "2026-11-02 12:30:00",
+    "customer_id": 2,
+    "customer_name": "Dev Shah",
+    "customer_email": "dev.shah@example.com",
+    "postal_code": "400001",
+    "city": "Mumbai",
+    "region": "Maharashtra",
+    "order_status": "delivered"
+  },
+  {
+    "order_id": 5003,
+    "order_date": "2026-11-03 15:15:00",
+    "customer_id": 3,
+    "customer_name": "Mira Nair",
+    "customer_email": "mira.nair@example.com",
+    "postal_code": "560001",
+    "city": "Bengaluru",
+    "region": "Karnataka",
+    "order_status": "delivered"
+  }
+]
