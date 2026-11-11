@@ -4,6 +4,23 @@ import type { AppDbConfig, DbConfig, LabDbConfig } from "./config.js";
 export type Conn = mysql.Connection;
 export type Pool = mysql.Pool;
 
+/** TLS for hosted MySQL. Certificates are always verified; a custom CA can be supplied. */
+function tls(cfg: { MYSQL_SSL: "true" | "false"; MYSQL_SSL_CA?: string }) {
+  if (cfg.MYSQL_SSL !== "true") return {};
+  const ca = cfg.MYSQL_SSL_CA?.replace(/\\n/g, "\n");
+  return { ssl: { minVersion: "TLSv1.2", rejectUnauthorized: true, ...(ca ? { ca } : {}) } };
+}
+
+/**
+ * Serverless (Vercel) runs many short-lived instances, each with its own pool, and the
+ * MySQL users have server-wide connection caps, so pools stay small there. Override with DB_POOL_SIZE.
+ */
+export function poolSize(local: number): number {
+  const n = Number(process.env.DB_POOL_SIZE);
+  if (Number.isInteger(n) && n > 0) return n;
+  return process.env.VERCEL ? Math.min(local, 3) : local;
+}
+
 const common = {
   dateStrings: true as const,
   supportBigNumbers: true,
@@ -16,7 +33,7 @@ export type DbRole = "root" | "app" | "lab_reader" | "lab_operator";
 
 function credentials(cfg: DbConfig, role: DbRole) {
   switch (role) {
-    case "root": return { user: "root", password: cfg.MYSQL_ROOT_PASSWORD };
+    case "root": return { user: cfg.MYSQL_ROOT_USER, password: cfg.MYSQL_ROOT_PASSWORD };
     case "app": return { user: cfg.APP_DB_USER, password: cfg.APP_DB_PASSWORD };
     case "lab_reader": return { user: cfg.LAB_READER_USER, password: cfg.LAB_READER_PASSWORD };
     case "lab_operator": return { user: cfg.LAB_OPERATOR_USER, password: cfg.LAB_OPERATOR_PASSWORD };
@@ -28,6 +45,7 @@ export function connect(cfg: DbConfig, role: DbRole, database?: string): Promise
   return mysql.createConnection({
     ...common,
     ...credentials(cfg, role),
+    ...tls(cfg),
     host: cfg.MYSQL_HOST,
     port: cfg.MYSQL_PORT,
     database,
@@ -38,6 +56,7 @@ export function createPool(cfg: DbConfig, role: DbRole, database: string, connec
   return mysql.createPool({
     ...common,
     ...credentials(cfg, role),
+    ...tls(cfg),
     host: cfg.MYSQL_HOST,
     port: cfg.MYSQL_PORT,
     database,
@@ -47,9 +66,10 @@ export function createPool(cfg: DbConfig, role: DbRole, database: string, connec
 }
 
 /** Pool for the web server, as the least-privilege application user. */
-export function createAppPool(cfg: AppDbConfig, connectionLimit = 10): Pool {
+export function createAppPool(cfg: AppDbConfig, connectionLimit = poolSize(10)): Pool {
   return mysql.createPool({
     ...common,
+    ...tls(cfg),
     host: cfg.MYSQL_HOST,
     port: cfg.MYSQL_PORT,
     user: cfg.APP_DB_USER,
@@ -61,10 +81,11 @@ export function createAppPool(cfg: AppDbConfig, connectionLimit = 10): Pool {
 }
 
 /** Pool for the lab sandbox as lab_reader (SELECT only) or lab_operator (scenario DML/EXECUTE, lab schema only). */
-export function createLabPool(cfg: LabDbConfig, role: "lab_reader" | "lab_operator", database?: string, connectionLimit = 5): Pool {
+export function createLabPool(cfg: LabDbConfig, role: "lab_reader" | "lab_operator", database?: string, connectionLimit = poolSize(5)): Pool {
   const reader = role === "lab_reader";
   return mysql.createPool({
     ...common,
+    ...tls(cfg),
     host: cfg.MYSQL_HOST,
     port: cfg.MYSQL_PORT,
     user: reader ? cfg.LAB_READER_USER : cfg.LAB_OPERATOR_USER,
