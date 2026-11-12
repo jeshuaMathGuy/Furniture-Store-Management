@@ -2,6 +2,8 @@
 
 *Architecture in appearance. Relational integrity underneath.*
 
+**Live demo: https://furni-form.vercel.app**
+
 FURNI / FORM is an immersive furniture showroom, a furniture-store management system and an interactive database laboratory. All three are built on the original `furniture_store_normalized.sql`.
 
 ## Requirements

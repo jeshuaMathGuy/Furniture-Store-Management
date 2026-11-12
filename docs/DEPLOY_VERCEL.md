@@ -8,7 +8,7 @@ It must support stored procedures, triggers and functions, multiple databases, a
 
 | Provider | Works? |
 |---|---|
-| **Railway** (MySQL template) | Yes: full MySQL 8, root user |
+| **Railway** (MySQL template) | Yes: full MySQL 8, root user. Use the **public TCP proxy** host and port (`*.proxy.rlwy.net`, from `MYSQL_PUBLIC_URL`), not `mysql.railway.internal`; that connection is unencrypted, so keep `MYSQL_SSL=false` |
 | **Aiven for MySQL** | Yes: TLS required (`MYSQL_SSL=true`); set `log_bin_trust_function_creators=1` in the service's advanced config |
 | PlanetScale, TiDB Cloud | **No**: stored procedures and triggers are not supported properly |
 
