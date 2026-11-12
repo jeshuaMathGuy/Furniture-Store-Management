@@ -98,3 +98,8 @@ The application database is `furni_form_app`. The original script's own `furnitu
 | `packages/database/` | runner, `DELIMITER`-aware splitter, typed repositories, auth/RBAC, snapshot diff |
 | `packages/shared/` | roles/permission matrix and execution-trace types |
 | `docs/` | architecture, source audit, roles and accounts, test results |
+
+Screenshot of the Website
+
+<img width="1895" height="911" alt="image" src="https://github.com/user-attachments/assets/c37e3713-3798-4e37-93f0-e40d2bf9aee7" />
+
