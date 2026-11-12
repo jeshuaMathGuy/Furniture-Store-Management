@@ -4,11 +4,9 @@
 
 FURNI / FORM is an immersive furniture showroom, a furniture-store management system and an interactive database laboratory. All three are built on the original `furniture_store_normalized.sql`.
 
-**Status:** Stages 0–8 are implemented: database foundation, storefront, 3D showroom/studio/hero, cart + simulated checkout + management dashboards (Stage 4), normalization lab (5), SQL playground and procedure/trigger/transaction/concurrency scenarios with validated execution traces (6–7), and 3D/accessibility polish (8). Scope was kept minimal where noted in `docs/database/TEST_RESULTS.md`.
-
 ## Requirements
 
-Everything runs natively on Windows; Docker is not needed.
+Everything runs natively on Windows
 
 * **Node.js 22 or newer** (developed on 26.13 LTS) and **pnpm 9.15** (`npm install -g pnpm@9.15.0`; Node 25+ no longer ships corepack)
 * **MySQL 8.0 or 8.4** running locally (verified on 8.0.43 and 8.4.13)
@@ -100,14 +98,3 @@ The application database is `furni_form_app`. The original script's own `furnitu
 | `packages/database/` | runner, `DELIMITER`-aware splitter, typed repositories, auth/RBAC, snapshot diff |
 | `packages/shared/` | roles/permission matrix and execution-trace types |
 | `docs/` | architecture, source audit, roles and accounts, test results |
-
-## Documents
-
-* [Source audit and object inventory](docs/database/SOURCE_AUDIT.md)
-* [Architecture, design system and staged plan](docs/architecture/ARCHITECTURE.md)
-* [Roles, permissions and demo accounts](docs/database/ROLES_AND_ACCOUNTS.md)
-* [3D experience: what is procedural, render modes, performance](docs/architecture/3D_EXPERIENCE.md)
-* [Performance findings and budgets](docs/performance/PERFORMANCE.md)
-* [Normalization lab](docs/normalization/NORMALIZATION.md)
-* [SQL lab](docs/lab/SQL_LAB.md) · [Traces](docs/lab/TRACES.md)
-* [Test results](docs/database/TEST_RESULTS.md)
