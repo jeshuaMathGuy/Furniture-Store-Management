@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { RenderModeControl } from "./render-mode";
 
 export function SiteFooter() {
@@ -27,10 +27,7 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-10"><RenderModeControl /></div>
-      <p className="mx-auto max-w-7xl px-4 pb-10 text-xs text-ink-soft sm:px-6 lg:px-10">
-        College demonstration project. Supplier names in the expanded catalogue are fictional, and prices are illustrative.
-      </p>
+      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-10"><RenderModeControl /></div>
     </footer>
   );
 }
